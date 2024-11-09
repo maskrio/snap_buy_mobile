@@ -140,3 +140,115 @@ GridView.count(
   }).toList(),
 ),
 ```
+
+## Tugas 8
+
+### Penggunaan `const` 
+
+`const` digunakan untuk setiap nilai/widget yang bersifat tetap dan tidak berubah. Keuntungannya adalah Flutter akan mencache nilai/widget saat pertama kali dibuat dan tidak perlu alokasi memory tambahan. Ini meningkatkan performa dari program itu sendiri. `const` digunakan apabila nilai/widget yang dipakai tidak akan berubah, sedangkan jangan digunakan apabila nilai/widget masih akan berubah.
+
+
+### Column vs Row
+
+Column menyusun item secara berurutan ke bawah, sedangkan Row ke samping. 
+
+Contoh implementasi: 
+```dart 
+Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+    Text(
+      'Item akan tersusun secara vertikal',
+      style: TextStyle(fontSize: 24),
+    ),
+    SizedBox(height: 20), // Spacer untuk memberi jarak
+    ElevatedButton(
+      onPressed: () {},
+      child: Text('Klik Saya'),
+    ),
+  ],
+),
+```
+
+```dart
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceAround,
+  children: [
+    Text(
+      'Item akan tersusun secara horizontal',
+      style: TextStyle(fontSize: 24),
+    ),
+    ElevatedButton(
+      onPressed: () {},
+      child: Text('Tombol 1'),
+    ),
+    ElevatedButton(
+      onPressed: () {},
+      child: Text('Tombol 2'),
+    ),
+    ElevatedButton(
+      onPressed: () {},
+      child: Text('Tombol 3'),
+    ),
+  ],
+),
+```
+
+### Input yang digunakan & tidak digunakan
+
+Jenis input yang digunakan :
+- TextFormField
+- ElevatedButton
+
+Jenis input yang belum digunakan :
+- CheckBox
+- Radio
+- Switch
+- DropdownButtonFormField
+- Slider
+- DatePicker
+
+### Mengatur tema flutter 
+
+Mendefinisikan tema global di `MainApp` pada `lib/main.dart`, definisikan `theme`nya, lalu membuat seluruh colorScheme pada komponen lainnya mengikuti Theme global tersebut. 
+
+Contohnya seperti menerapkan 
+```dart
+AppBar(
+  backgroundColor: Theme.of(context).colorScheme.primary,
+),
+```
+
+### Navigator 
+
+Dalam flutter, navigasi yang digunakan adalah stack. Stack ini akan menyimpan lokasi-lokasi yang diakses oleh pengguna. 
+
+Apabila mengklik sesuatu, perlu di navigate ke page lain, maka harus push()
+```dart
+    if (item.name == "Tambah Mood") {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const MoodEntryFormPage()));
+    }
+// pergi ke Page baru dan push ke stack halaman sekarang
+```
+
+Kenapa perlu stack? 
+
+Karena untuk fungsionalitas misalkan tombol back, maka harus pergi ke page sebelumnya.
+```dart 
+    onPressed: () {
+        Navigator.pop(context);
+    },
+```
+
+Apabila tidak mau disimpan page yang sebelumnya, maka gunakan pushReplacement untuk mereplace stack teratas.
+```dart 
+    onTap: () {
+        Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => MyHomePage(),
+        ));
+    },
+```
