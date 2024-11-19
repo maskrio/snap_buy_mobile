@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snap_buy_mobile/screens/list_productentry.dart';
 import 'package:snap_buy_mobile/screens/menu.dart';
 import 'package:snap_buy_mobile/screens/productentryform.dart';
 
@@ -61,6 +62,17 @@ class LeftDrawer extends StatelessWidget {
                   ));
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Daftar Mood'),
+            onTap: () {
+                // Route menu ke halaman mood
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ProductPage()),
+                );
+            },
+            ),
         ],
       ),
     );
