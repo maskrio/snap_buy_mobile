@@ -252,3 +252,48 @@ Apabila tidak mau disimpan page yang sebelumnya, maka gunakan pushReplacement un
         ));
     },
 ```
+
+## Tugas 9
+
+### Diperlukannya Model
+
+Data disini karena kita mengambil data dari endpoint pada django, maka kita mendapat return berupa JSON (karena dibuat demikian). Apabila kita langsung menggunakan data dari JSON, akan lebih sulit untuk mengupdate dan mengganti data karena tidak object oriented. Maka, hasil dari json ini dibuat dulu menjadi object kemudian setelah datanya ingin dikirimkan kembali, maka dibuat menjadi JSON kembali. 
+
+### Library http 
+
+Library ini digunakan karena perlunya komunikasi antara django dan flutter, sehingga perlu adanya pengiriman dan penerimaan data, oleh karena itu http ini diperlukan. 
+
+### Cookie request 
+
+Pada django, diterapkan beberapa cookie untuk memastikan data-data sementara dari pengguna seperti sesi login. Oleh karena itu, pada flutter juga memerlukan data cookie ini supaya pada django bisa memastikan juga bahwa memang benar user sedang login di mobile, karena berisi sesi login dari django. Penggunaan dari cookie ini juga bisa beragam seperti menyimpan informasi terakhir login dan lain-lain.
+
+### Mekanisme pengiriman data dari input hingga ditampilkan
+
+Flutter menerima input pada `lib/screens/productentryform.dart`. Setelah pengguna mengisi dan menekan tombol save, maka akan dikirimkan ke endpoint di django yang akan membuat entry baru.
+
+Kemudian apabila dilihat pada `lib/screens/list_productentry.dart`, akan menerima JSON dari django, kemudian akan membuat data model berdasarkan JSON yang diterima. Lalu, satu per satu ditampilkan.
+
+### Mekanisme login, register, logout.
+
+#### Logout
+
+Setelah user memasukkan data username dan password, flutter akan mengirim request ke endpoint login untuk validasi user. Apabila benar, maka user dapat login. 
+
+#### Register
+
+Setelah user memasukkan data username dan password, flutter akan mengirim request ke endpoint register untuk validasi pembuatan akun. Apabila benar, maka user berhasil membuat akun.
+
+#### Logout
+
+Setelah user mengklik tombol logout, flutter akan mengirim request ke endpoint logout untuk melogout user. Apabila berhasil, maka user akan log out.
+
+### Detail Implementasi 
+
+1. Menambahkan app authentication, bertujuan untuk menerima request dan mengembalikan informasi response yang berhubungan dengan login, register, atau logout. 
+
+2. Membuat widget page login, register pada flutter. `lib/screens/login.dart`, `lib/screens/register.dart`.
+
+3. Membuat Model Product pada `lib/models/product.dart`.
+
+4. Mengubah seluruh yang berhubungan dengan data untuk melakukan `fetch` ke endpoint-endpoint django supaya seluruh data yang terdapat di mobile terintegrasi dengan django.
+

@@ -20,13 +20,13 @@ class _ProductPageState extends State<ProductPage> {
     var data = response;
     
     // Melakukan konversi data json menjadi object Product
-    List<Product> listMood = [];
+    List<Product> listProduct = [];
     for (var d in data) {
       if (d != null) {
-        listMood.add(Product.fromJson(d));
+        listProduct.add(Product.fromJson(d));
       }
     }
-    return listMood;
+    return listProduct;
   }
 
   @override
