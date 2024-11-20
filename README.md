@@ -1,5 +1,7 @@
 # Snap Buy Mobile
 
+Link deployment: https://install.appcenter.ms/orgs/pbpti/apps/mental-health-tracker/distribution_groups/public/releases/1
+
 ## Tugas 7
 
 ### Stateless Widget and StateFul Widget
